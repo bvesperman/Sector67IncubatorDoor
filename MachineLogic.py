@@ -100,6 +100,7 @@ class MachineLogic:
     def DoUnAuthorizedContinuousWork(self):
    	if io.input(self.DoorButtonPin) == 1:
 	   io.output(self.DoorRelayPin,True)
+           print("button push")
 	   print("door open")
 	   time.sleep(5)
            io.output(self.DoorRelayPin,False)

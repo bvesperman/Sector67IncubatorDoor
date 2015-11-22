@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import json
+import requests
 from suds.client import Client
 
 class SectorAdmin:
@@ -8,13 +9,15 @@ class SectorAdmin:
 
     def GetAuthorizedUsers( self, MachineID):
 
- 	url = "https://www.pinsoft.net/sectorbilling/payments.asmx?wsdl"
-	client = Client(url)
-	data = client.service.GetMachineAuthorizationByMachineIDForPI(MachineID)
-        result = json.loads(data)
-	return result
+ 	#url = "https://www.pinsoft.net/sectorbilling/payments.asmx?wsdl"
+	#client = Client(url)
+	#data = client.service.GetMachineAuthorizationByMachineIDForPI(MachineID)
+        #result = json.loads(data)
+	#return result
 
+        response = requests.get('http://www.sector67.org/blog/api/machine/get_rfids_for_machine/?machine_id={0}'.format(MachineID), timeout=120)
 
+	return response.json()  #result
 
     def UpdateMachine(self, MachineID):
 
